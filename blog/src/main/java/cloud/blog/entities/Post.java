@@ -1,5 +1,6 @@
 package cloud.blog.entities;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Post {
@@ -10,13 +11,16 @@ public class Post {
 	}
 	@Override
 	public boolean equals(Object obj) {
-
-		if(obj ==null || obj.getClass() != getClass()) return false;//Proteção do cast
+		if(this == obj)return true;
+		if(obj == null || obj.getClass() != getClass()) return false;//Proteção do cast
 
 		Post post = (Post) obj;//cast
-		return id.equals(post.id);
+//		return id.equals(post.id);
+		return Objects.equals(id, post.id);
 	}
-	
-	
 
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(id);
+	}
 }
